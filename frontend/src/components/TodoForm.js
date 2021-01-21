@@ -14,12 +14,12 @@ export default function TodoForm({todos, changeTodos}) {
                 const res = await fetch('/api/todos', {
                     method: 'POST',
                     headers: {
-                        "Content-Type": "application/json"
+                        "Content-Type": "application/json",
+                        Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MTEyNzE5MDgsIm5iZiI6MTYxMTI3MTkwOCwianRpIjoiZGY4OTk3MDMtNjUwNi00OGYyLWE1NTQtMWIzMDNlMjc4NGJmIiwiZXhwIjoxNjExODc2NzA4LCJpZGVudGl0eSI6IjYwMGEwNzNkZmExMzUwODdkOTYzMjI4OCIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.acVZkWuRoJHfJwh764f6XmXK3VKNTQjJFtqpW6HgU1I"
                     },
                     body: JSON.stringify(data)
                 })
                 const list = await res.json()
-                console.log(list)
                 changeTodos(list)
             } else {
                 console.log("Ce nom existe déjà")

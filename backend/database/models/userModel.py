@@ -13,4 +13,4 @@ class User(db.Document):
     def check_password_hash(self, password):
         return check_password_hash(self.password, password)
 
-User.register_delete_rule(Movie, 'added_by', db.CASCADE)
+User.register_delete_rule(User, 'added_by', db.CASCADE)

@@ -7,7 +7,8 @@ export default function TodoList({todos, changeTodos}) {
         const res = await fetch(url, {
             method: 'PUT',
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MTEyNzE5MDgsIm5iZiI6MTYxMTI3MTkwOCwianRpIjoiZGY4OTk3MDMtNjUwNi00OGYyLWE1NTQtMWIzMDNlMjc4NGJmIiwiZXhwIjoxNjExODc2NzA4LCJpZGVudGl0eSI6IjYwMGEwNzNkZmExMzUwODdkOTYzMjI4OCIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.acVZkWuRoJHfJwh764f6XmXK3VKNTQjJFtqpW6HgU1I"
             },
             body: JSON.stringify({
                 status: true
@@ -20,7 +21,11 @@ export default function TodoList({todos, changeTodos}) {
     const fetchDeleteTodo = async (id) => {
         const url = "/api/todos/" + id
         const res = await fetch(url, {
-            method: 'DELETE'
+            method: 'DELETE',
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MTEyNzE5MDgsIm5iZiI6MTYxMTI3MTkwOCwianRpIjoiZGY4OTk3MDMtNjUwNi00OGYyLWE1NTQtMWIzMDNlMjc4NGJmIiwiZXhwIjoxNjExODc2NzA4LCJpZGVudGl0eSI6IjYwMGEwNzNkZmExMzUwODdkOTYzMjI4OCIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.acVZkWuRoJHfJwh764f6XmXK3VKNTQjJFtqpW6HgU1I"
+            }
         })
         const data = await res.json()
         changeTodos(data) 
