@@ -14,20 +14,17 @@ class TodosApi(Resource):
     def post(self):
         body = request.get_json()
         todo = Todo(**body).save()
-        newTodo = Todo.objects.get(id=str(todo.id)).to_json()
-        return Response(newTodo, mimetype="application/json", status=200)
+        return Response(Todo.objects.get(id=str(todo.id)).to_json(), mimetype="application/json", status=200)
 
 class TodoApi(Resource):
 
     def get(self, id):
-        todo = Todo.objects.get(id=id).to_json()
-        return Response(todo, mimetype="application/json", status=200)
+        return Response(Todo.objects.get_or_404(id=id).to_json(), mimetype="application/json", status=200)
 
     def put(self, id):
+        # !!!!!!!!! Body can be just {"name": "newName", status: trueOrfalse}
         body = request.get_json()
-        todo = Todo.objects.get(id=id)
-        todo.status = body["status"]
-        todo.save()
+        Todo.objects.get_or_404(id=id).update(**body)
         return "", 200
 
     def delete(self, id):
