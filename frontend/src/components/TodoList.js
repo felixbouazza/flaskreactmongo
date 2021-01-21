@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function TodoList({todos, deleteTodo, updateTodo}) {
+export default function TodoList({todos, changeTodos}) {
 
     const fetchNewTodoState = async (id) => {
         const url = "/api/todos/" + id
@@ -13,7 +13,8 @@ export default function TodoList({todos, deleteTodo, updateTodo}) {
                 status: true
             })
         })
-        updateTodo(id)
+        const data = await res.json()
+        changeTodos(data)
     }
 
     const fetchDeleteTodo = async (id) => {
@@ -21,7 +22,8 @@ export default function TodoList({todos, deleteTodo, updateTodo}) {
         const res = await fetch(url, {
             method: 'DELETE'
         })
-        deleteTodo(id) 
+        const data = await res.json()
+        changeTodos(data) 
     }
 
     return (

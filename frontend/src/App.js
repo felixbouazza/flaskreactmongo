@@ -16,38 +16,20 @@ function App() {
     setTodos(data)
   }
 
-  const addTodos = (newTodo) => {
-    const newTodos = [newTodo, ...todos]
-    setTodos(newTodos)
-  }
-
-  const deleteTodo = (id) => {
-    const newTodos = todos.filter(todo => todo["_id"]["$oid"] !== id)
-    setTodos(newTodos)
-  } 
-
-  const updateTodos = (id) => {
-    const newTodos = todos.map(todo => {
-      if(todo["_id"]["$oid"] === id) {
-        return {
-          ...todo,
-          status: true
-        }
-      }
-    })
-    setTodos(newTodos)
+  const changeTodos = (todoList) => {
+    setTodos(todoList)
   }
 
   return (
     <div className="App">
       <h1>Todo Application</h1>
       {/* Affichage du formulaire de création */}
-      <TodoForm todos={todos} addTodos={addTodos}/>
+      <TodoForm todos={todos} changeTodos={changeTodos}/>
 
 
       {/* Affichage de la liste des tâches */}
       {todos ? (
-          <TodoList todos={todos} deleteTodo={deleteTodo} updateTodo={updateTodos}/>
+          <TodoList todos={todos} changeTodos={changeTodos}/>
       ) : (
           <>
           Pas de tâche à faire

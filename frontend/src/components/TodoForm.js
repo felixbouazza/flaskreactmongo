@@ -1,13 +1,13 @@
 import React from 'react'
 import { useForm } from "react-hook-form";
 
-export default function TodoForm({todos, addTodos}) {
+export default function TodoForm({todos, changeTodos}) {
 
     const {register, handleSubmit } = useForm()
     
     const onSubmit = async (data) => {
         if(!data.name) {
-            console.log("Aucun nom n'est renseigné")
+            throw new Error("Aucun nom n'a été renseigné !")
         } else {
             const newTodos = todos.filter(todo => todo.name === data.name)
             if(newTodos.length === 0) {
@@ -18,8 +18,9 @@ export default function TodoForm({todos, addTodos}) {
                     },
                     body: JSON.stringify(data)
                 })
-                const obj = await res.json()
-                addTodos(obj)
+                const list = await res.json()
+                console.log(list)
+                changeTodos(list)
             } else {
                 console.log("Ce nom existe déjà")
             }
