@@ -1,7 +1,7 @@
 import sys
 sys.path.append("..")
 
-from flask import request, Response
+from flask import request, Response, jsonify
 from flask_jwt_extended import create_access_token
 from database.models.userModel import User
 from flask_restful import Resource
@@ -27,4 +27,10 @@ class LoginApi(Resource):
         
         expires = datetime.timedelta(days=7)
         access_token = create_access_token(identity=str(user.id), expires_delta=expires)
-        return {'token': access_token}, 200
+        return {
+                'token': access_token,
+                "user": {
+                    "id": str(user.id),
+                    "email": user.email
+                }
+            }, 200

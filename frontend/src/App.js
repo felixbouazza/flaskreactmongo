@@ -14,7 +14,7 @@ function App() {
     const res = await fetch("/api/todos", {
       method: "GET",
       headers: {
-       Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MTEyNzE5MDgsIm5iZiI6MTYxMTI3MTkwOCwianRpIjoiZGY4OTk3MDMtNjUwNi00OGYyLWE1NTQtMWIzMDNlMjc4NGJmIiwiZXhwIjoxNjExODc2NzA4LCJpZGVudGl0eSI6IjYwMGEwNzNkZmExMzUwODdkOTYzMjI4OCIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.acVZkWuRoJHfJwh764f6XmXK3VKNTQjJFtqpW6HgU1I"
+       Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MTEzMTY0MDEsIm5iZiI6MTYxMTMxNjQwMSwianRpIjoiZjliMzY5NzctMTJkMy00OGVjLWJiYjAtNGUyYTg3YmM5MmYyIiwiZXhwIjoxNjExOTIxMjAxLCJpZGVudGl0eSI6IjYwMGEwZTM2ZmExMzUwODdkOTYzMjI4YiIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.XgM4V5iYjAW5JGbXCr04Cl3j6kMQHAqSFHoj2GSgx08"
       }
     })
     const data = await res.json()
